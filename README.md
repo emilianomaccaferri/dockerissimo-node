@@ -2,6 +2,6 @@
 the way I roll with Docker and Node.js
 
 # how????
-a) Install Docker
-b) chmod +x startserver.sh
+a) Install Docker<br>
+b) chmod +x startserver.sh<br>
 c) ./startserver.sh
