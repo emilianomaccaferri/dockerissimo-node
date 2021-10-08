@@ -9,8 +9,8 @@ services:
       network: host
     ports:
       - "1111:1111"
-    #volumes: # for public stuff
-    #  - ./public:/path/to/public/dir
+    volumes: # for public stuff
+      - .:/code
     entrypoint: [ "./wait-for", "mysql:3306", "--", "npm", "run", "app" ]
     env_file:
      vars.env

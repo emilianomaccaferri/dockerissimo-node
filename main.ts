@@ -9,3 +9,4 @@ const router = new Router();
 router.init();
 
 db.init();
+console.log("hot reloading!")

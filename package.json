@@ -5,7 +5,7 @@
   "description": "sample node + mysql + redis docker template",
   "main": "./build/main.js",
   "scripts": {
-    "app": "tsc && node build/main.js",
+    "app": "nodemon",
     "compile": "tsc"
   },
   "repository": {
