@@ -1,10 +1,9 @@
-import mysql, { Pool, createPool, OkPacket } from "mysql2";
+import mysql, { Pool, createPool } from "mysql2";
 
 class Db {
     pool: Pool | undefined = undefined;
 
-    constructor() {
-    }
+    constructor() {}
 
     init() {
         if (this.pool !== undefined) return;
@@ -23,9 +22,6 @@ class Db {
             this.pool!.query(query, options, function (err, results, fields) {
                 if (err)
                     return reject(err);
-                
-                if(buffered_results)
-                    results = debufferize(results as any);
 
                 return resolve({
                     results,
@@ -38,22 +34,3 @@ class Db {
 
 export default new Db();
 export const core = mysql;
-export const debufferize = (rows: any[]): any => {
-
-    let new_rows = rows.map(result => {
-
-        let keys = Object.keys(result);
-        keys.forEach(key => {
-
-            if(result[key] instanceof Buffer)
-                result[key] = result[key].toString();
-
-        })
-
-        return result;
-            
-    })
-
-    return new_rows;
-
-}

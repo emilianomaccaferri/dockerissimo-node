@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Context } from "koa";
 
 export default class HTTPError{
 
@@ -40,9 +40,10 @@ export default class HTTPError{
     public static readonly missingParameters = (...params: string[]) =>
         new HTTPError('missing_parameters', 400).addParam('missing', params);
 
-    public toResponse(res: Response): Response{
+    public toResponse(ctx: Context): void{
 
-        return res.status(this.#error_code).json(this.#response)
+        ctx.status = this.#error_code;
+        ctx.body = this.#response;
 
     }
 

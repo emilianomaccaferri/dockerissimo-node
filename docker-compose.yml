@@ -1,4 +1,8 @@
 version: "3.9"
+
+volumes:
+  mysql_data:
+
 services:
   node:
     depends_on:
@@ -8,10 +12,9 @@ services:
       context: .
       network: host
     ports:
-      - "1111:1111"
+      - "8000:8000"
     volumes: # for public stuff
       - .:/code
-    entrypoint: [ "./wait-for", "mysql:3306", "--", "npm", "run", "app" ]
     env_file:
      vars.env
   redis:
@@ -21,5 +24,7 @@ services:
   mysql:
     image: "mysql"
     restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
     env_file:
       vars.env
